@@ -5,7 +5,7 @@ from pypdf import PdfReader, PdfWriter
 
 def parse_page_ranges(pages_str):
     """
-    Parse a string like '1,3,5-7' into a list of page numbers.
+    Parse a string like '1,2-4' into a list of page numbers.
     :param pages_str: Comma-separated string of page ranges
     """
     pages = []
@@ -22,8 +22,8 @@ def extract_pages(input_pdf, output_pdf, pages_str):
     """
     Docstring for extract_pages
 
-    :param input_pdf: Name of the input PDF file
-    :param output_pdf: Name of the output PDF file
+    :param input_pdf: Path of the input PDF file
+    :param output_pdf: Path of the output PDF file
     :param pages_str: Comma-separated string of page ranges
     """
     reader = PdfReader(str(input_pdf))
@@ -50,9 +50,7 @@ def main():
 
     parser.add_argument("output_pdf", type=Path, help="Path to the output PDF")
 
-    parser.add_argument(
-        "--pages", required=True, help="Pages to extract, e.g. '1,3,5-7'"
-    )
+    parser.add_argument("--pages", required=True, help="Pages to extract, e.g. '1,2-4'")
 
     args = parser.parse_args()
 
